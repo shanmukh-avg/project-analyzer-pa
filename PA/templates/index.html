@@ -14,6 +14,70 @@
         <div class="brand">Project<span>Analyzer</span></div>
         <a href="#analyzer" class="nav-link">Analyze Project</a>
     </header>
+    <nav class="project-tabs">
+    <button class="tab-link active"
+            onclick="showTab('details', this)">
+        Project Details
+    </button>
+
+    <button class="tab-link"
+            onclick="showTab('documentation', this)">
+        Documentation
+    </button>
+
+    <button class="tab-link"
+            onclick="showTab('source', this)">
+        Source Code
+    </button>
+</nav>
+    <nav class="project-tabs">
+  <button class="tab active"
+          onclick="showSection('details', this)">
+    Project Details
+  </button>
+
+  <button class="tab"
+          onclick="showSection('documentation', this)">
+    Documentation
+  </button>
+
+  <button class="tab"
+          onclick="showSection('source', this)">
+    Source Code
+  </button>
+</nav>
+
+<section id="details" class="tab-content">
+  <h2>Project Details</h2>
+  <p>Enter your project information here.</p>
+</section>
+
+<section id="documentation"
+         class="tab-content" hidden>
+  <h2>Documentation</h2>
+  <p>Your project documentation will appear here.</p>
+</section>
+
+<section id="source" class="tab-content" hidden>
+  <h2>Source Code</h2>
+  <p>Your project source code will appear here.</p>
+</section>
+
+<script>
+function showSection(id, button) {
+  document.querySelectorAll(".tab-content").forEach(section => {
+    section.hidden = true;
+  });
+
+  document.getElementById(id).hidden = false;
+
+  document.querySelectorAll(".tab").forEach(tab => {
+    tab.classList.remove("active");
+  });
+
+  button.classList.add("active");
+}
+</script>
 
     <main class="container">
         <section class="hero">
@@ -181,6 +245,73 @@
         <footer>
             Diploma CME Project · Project Analyzer
         </footer>
+        <section id="documentation" class="tab-panel" hidden>
+    <h2>Project Documentation</h2>
+    <p>
+        Project Analyzer helps students check their project
+        information, requirements, and completeness.
+    </p>
+
+    <h3>Key Features</h3>
+    <ul>
+        <li>Project information analysis</li>
+        <li>Project completeness checking</li>
+        <li>Documentation support</li>
+        <li>Source code reference</li>
+    </ul>
+
+    <h3>Technologies Used</h3>
+    <p>HTML, CSS, JavaScript, Python, Flask and SQLite.</p>
+</section>
+
+<section id="source" class="tab-panel" hidden>
+    <h2>Source Code</h2>
+    <p>
+        The source code is maintained in your Project Analyzer
+        project files.
+    </p>
+
+    <ul>
+        <li>app.py — Python Flask backend</li>
+        <li>templates/index.html — Website structure</li>
+        <li>static/style.css — Website styling</li>
+        <li>static/script.js — Frontend JavaScript</li>
+    </ul>
+    <p>
+        Open these files in VS Code to view the source code.
+    </p>
+</section>
     </main>
+    <script>
+function showTab(tabName, button) {
+    // Hide the extra panels
+    document.querySelectorAll(".tab-panel").forEach(panel => {
+        panel.hidden = true;
+    });
+
+    // Hide the existing project details content
+    document.querySelectorAll(".hero, #analyzer, .notice")
+        .forEach(element => {
+            element.hidden = true;
+        });
+
+    // Show the selected tab
+    if (tabName === "details") {
+        document.querySelectorAll(".hero, #analyzer, .notice")
+            .forEach(element => {
+                element.hidden = false;
+            });
+    } else {
+        document.getElementById(tabName).hidden = false;
+    }
+
+    // Highlight the selected button
+    document.querySelectorAll(".tab-link").forEach(tab => {
+        tab.classList.remove("active");
+    });
+
+    button.classList.add("active");
+}
+</script>
 </body>
 </html>

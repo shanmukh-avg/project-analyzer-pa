@@ -141,4 +141,6 @@ This report does not guarantee project quality.
 initialize_db()
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=8080, debug=False)
+    import logging
+    app.logger.setLevel(logging.DEBUG)
+    app.run(host="127.0.0.1", port=8080, debug=True)
